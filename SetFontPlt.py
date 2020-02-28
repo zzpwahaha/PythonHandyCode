@@ -19,4 +19,5 @@
 
 
 #The thing we need to update is really:
+plt.rc("text",usetex="True") # this will slow down the plotting, very annoying
 matplotlib.rcParams['font.serif'] = "Times"
