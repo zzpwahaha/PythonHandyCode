@@ -21,4 +21,4 @@
 #The thing we need to update is really:
 plt.rc("text",usetex="True") # this will slow down the plotting, very annoying
 plt.rcParams['font.family'] = "serif"
-plt.rcParams['font.sans-serif'] = "New Times Roman"
+plt.rcParams['font.sans-serif'] = 'Computer Modern'
