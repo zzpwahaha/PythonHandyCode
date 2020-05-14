@@ -1,4 +1,5 @@
 import seaborn as sns
+from matplotlib.colors import LogNorm
 
 plt.rcParams.update({'font.size': 16})
 plt.rcParams['font.family'] = "serif"
@@ -11,7 +12,8 @@ xsns = xv[0,:]
 ysns = yv[:,0]
 # for logarithm plot
 # log_norm = LogNorm(vmin=10**-3, vmax=1)
-# cbar_ticks = [10**i for i in range(-3, 1)]
+# cbar_ticks = [10**i for i in range(int(np.ceil(np.log10(np.abs(data)).max())),
+#                                    int(np.floor(np.log10(np.abs(data)).min())))]
 # ax = sns.heatmap(data,norm = log_norm,
 #                   cbar_kws={"ticks": cbar_ticks},
 #                   xticklabels=100,
