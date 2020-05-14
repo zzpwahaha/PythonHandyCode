@@ -4,11 +4,11 @@ plt.rcParams.update({'font.size': 16})
 plt.rcParams['font.family'] = "serif"
 plt.rcParams['font.serif'] = 'Computer Modern'
 plt.rcParams['text.usetex'] = True
-
+#xv, yv = np.meshgrid(np.linspace(10,210,501),np.linspace(10,210,501))
 fig, ax1 = plt.subplots(figsize = [8,6])
 data = test
-xsns = xv
-ysns = yv
+xsns = xv[0,:]
+ysns = yv[:,0]
 # for logarithm plot
 # log_norm = LogNorm(vmin=10**-3, vmax=1)
 # cbar_ticks = [10**i for i in range(-3, 1)]
