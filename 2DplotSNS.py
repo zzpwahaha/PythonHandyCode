@@ -12,8 +12,8 @@ xsns = xv[0,:]
 ysns = yv[:,0]
 # for logarithm plot
 # log_norm = LogNorm(vmin=10**-3, vmax=1)
-# cbar_ticks = [10**i for i in range(int(np.ceil(np.log10(np.abs(data)).max())),
-#                                    int(np.floor(np.log10(np.abs(data)).min())))]
+# cbar_ticks = [10**i for i in range(int(np.floor(np.log10(np.abs(data)).min())),
+#                                   int(np.ceil(np.log10(np.abs(data)).max())))]
 # ax = sns.heatmap(data,norm = log_norm,
 #                   cbar_kws={"ticks": cbar_ticks},
 #                   xticklabels=100,
@@ -43,7 +43,10 @@ cbar_ax.set_frame_on(True)
 # set on the frame of the main plot
 for _, spine in ax.spines.items():
     spine.set_visible(True)
-    
+# for log cbar add minor ticks label    
+#formatter = LogFormatter(labelOnlyBase = False,  
+#                         minor_thresholds = (2, 1))
+#cbar_ax.yaxis.set_minor_formatter(formatter)     
 ax1.set_xlabel(r'')
 ax1.set_ylabel(r'')
 ax1.set_title(r'')
