@@ -1,3 +1,5 @@
+from matplotlib.ticker import LogFormatter
+
 formatter = LogFormatter(labelOnlyBase = False,  
                          minor_thresholds = (1.76, 1 ))
 ax1.xaxis.set_minor_formatter(formatter)
