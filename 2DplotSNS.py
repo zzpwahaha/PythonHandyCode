@@ -1,5 +1,6 @@
 import seaborn as sns
 from matplotlib.colors import LogNorm
+from matplotlib.ticker import LogFormatter
 
 plt.rcParams.update({'font.size': 16})
 plt.rcParams['font.family'] = "serif"
