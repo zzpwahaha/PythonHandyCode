@@ -1,0 +1,4 @@
+#to make sure pcolormesh looks like seaborn or imshow
+def fixPcolormesh(Xtmp,Ytmp):
+    return (np.concatenate([Xtmp,[Xtmp[-1]+(Xtmp[1]-Xtmp[0])]])-(Xtmp[1]-Xtmp[0])/2,
+               np.concatenate([Ytmp,[Ytmp[-1]+(Ytmp[1]-Ytmp[0])]])-(Ytmp[1]-Ytmp[0])/2)
