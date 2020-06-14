@@ -1,7 +1,7 @@
 # stoled from https://stackoverflow.com/questions/57216993/define-aspect-ratio-when-using-twinx-in-new-version-of-matplotlib
 # this can gives you golden ratio of the axes box
 
-def GoldenRatio(fig,cbar = False):
+def GoldenRatio(fig,cbar = False,parasiticCbar = False,ratio=0.618034):
     w, h = fig.get_size_inches()
     t = fig.subplotpars.top
     b = fig.subplotpars.bottom
@@ -9,7 +9,7 @@ def GoldenRatio(fig,cbar = False):
     r = fig.subplotpars.right
     axsy = h*(t-b)
     axsx = w*(r-l)
-    l = (1-axsx*0.618/h)/2
+    l = (1-axsx*ratio/h)/2
     if cbar:
         if not parasiticCbar:
             cax = fig.get_axes()[-1]
@@ -23,10 +23,10 @@ def GoldenRatio(fig,cbar = False):
             fig.subplots_adjust(bottom=l, top=1-l)
             ax = fig.get_axes()[0]
             box = ax.get_position()
-            ax.set_position([box.x0, box.y0, box.height/0.618 *h/w, box.height] )
+            ax.set_position([box.x0, box.y0, box.height/ratio *h/w, box.height] )
             cax = fig.get_axes()[-1]
             box1 = cax.get_position()
-            cax.set_position([box1.x0 + 0.9*(box.height/0.618 *h/w - (box.x1 - box.x0)), 
+            cax.set_position([box1.x0 + 0.9*(box.height/ratio *h/w - (box.x1 - box.x0)), 
                               box1.y0, box1.x1-box.x0, box.height] )
     else:
         fig.subplots_adjust(bottom=l, top=1-l)
