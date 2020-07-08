@@ -1,0 +1,8 @@
+fig,ax = plt.subplots(figsize = [8,6])
+p = ax.scatter(array_distance, array_eigenvalues, 1, array_overlaps,
+               cmap = 'RdBu')
+# to stress the overlap of the state, one can use PuRd or Greys
+# see https://matplotlib.org/examples/color/colormaps_reference.html
+# and https://stackoverflow.com/questions/26738881/setting-scatter-points-transparency-from-data-array-in-matplotlib-plot
+cbar = plt.colorbar(p,ax = ax)
+GoldenRatio(fig,cbar = True, parasiticCbar=True)
