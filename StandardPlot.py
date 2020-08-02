@@ -3,6 +3,7 @@
 plt.rcParams.update({'font.size': 16})
 plt.rcParams['font.family'] = "serif"
 plt.rcParams['font.serif'] = 'Computer Modern'
+plt.rcParams['text.usetex'] = 'True'
 fig, ax1 = plt.subplots(figsize = [8,6])
 
 #something in between
