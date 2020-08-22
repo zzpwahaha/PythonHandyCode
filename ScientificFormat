@@ -1,0 +1,4 @@
+# https://stackoverflow.com/questions/49351275/matplotlib-use-fixed-number-of-decimals-with-scientific-notation-in-tick-labels
+# https://stackoverflow.com/questions/42142144/displaying-first-decimal-digit-in-scientific-notation-in-matplotlib
+ax.ticklabel_format(axis='y', style='sci',scilimits=(0,0))
+# to set the label be scientific while the 10 based expoential term is located on the top of the axes frame
