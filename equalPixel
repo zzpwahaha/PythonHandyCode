@@ -16,3 +16,13 @@ def equalPixel(fig,ax,cbar,wspace=0.2,cbarspace=0.05):
         bboxCbar.x0 = bboxAx.x1 + cbarspace*bboxAx.width; bboxCbar.x1 = bboxCbar.x0 + widCbar; 
         bboxCbar.y0=bboxAx.y0; bboxCbar.y1=bboxAx.y1
         cbar.ax.set_position(bboxCbar)
+    else:
+        bboxAx=ax.get_position()
+        by1=bboxAx.width*fig.get_figwidth()*ax.get_data_ratio()/fig.get_figheight()
+        bboxAx.y0 = 1/2-by1/2; bboxAx.y1 = 1/2+by1/2
+        ax.set_position(bboxAx)
+        bboxCbar = cbar.ax.get_position()
+        widCbar=bboxCbar.width
+        bboxCbar.x0 = bboxAx.x1 + cbarspace*bboxAx.width; bboxCbar.x1 = bboxCbar.x0 + widCbar; 
+        bboxCbar.y0=bboxAx.y0; bboxCbar.y1=bboxAx.y1
+        cbar.ax.set_position(bboxCbar)
