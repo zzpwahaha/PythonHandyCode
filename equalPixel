@@ -1,5 +1,10 @@
 # for the pcolormesh to get the figure has the right aspect ration according to the number of pixels along x and y
 def equalPixel(fig,ax,cbar,wspace=0.2,cbarspace=0.05):
+    '''
+    if the y axis is not working, try add contrained_layout=True in the addsubplots as figkw, 
+    or plt.rcParams['figure.constrained_layout.use']=True, see more in
+    https://matplotlib.org/tutorials/intermediate/constrainedlayout_guide.html
+    '''
     if isinstance(ax,(tuple,list,np.ndarray)):
         for i in range(len(ax)):
             bboxAx=ax[i].get_position()
