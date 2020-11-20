@@ -1,0 +1,9 @@
+def equalCmap(fig):
+    axplot = fig.axes[:-1]
+    clim=[]
+    for ax in axplot:
+        clim.append(ax.collections[0].get_clim())
+    clim = np.array(clim)
+    vmaxx=clim[:,1].max(); vminn=clim[:,0].min()
+    for ax in axplot:
+        ax.collections[0].set_clim([vminn,vmaxx])
