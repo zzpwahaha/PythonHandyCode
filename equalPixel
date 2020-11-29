@@ -1,19 +1,25 @@
-# for the pcolormesh to get the figure has the right aspect ration according to the number of pixels along x and y
-def equalPixel(fig,ax,cbar,wspace=0.2,cbarspace=0.05):
-    '''
-    if the y axis is not working, try add contrained_layout=True in the addsubplots as figkw, 
-    or plt.rcParams['figure.constrained_layout.use']=True, see more in
-    https://matplotlib.org/tutorials/intermediate/constrainedlayout_guide.html
-    '''
+def equalPixel(fig,ax,cbar,wspace=0.2,cbarspace=0.05,leftshift=None):
+    if leftshift is None:
+        leftshift=0
+    subplots=0
+    for axe in fig.axes:
+        if isinstance(axe ,matplotlib.axes._subplots.Subplot):
+            subplots+=1
     if isinstance(ax,(tuple,list,np.ndarray)):
+        if ax[0]!=fig.axes[0]:
+            bAxWidth = fig.axes[0].get_position().width
+        else: 
+            bAxWidth = ax[0].get_position().width
         for i in range(len(ax)):
             bboxAx=ax[i].get_position()
-            by1=bboxAx.width*fig.get_figwidth()*ax[i].get_data_ratio()/fig.get_figheight()
+            by1=bAxWidth*fig.get_figwidth()*ax[i].get_data_ratio()/fig.get_figheight()
             bboxAx.y0 = 1/2-by1/2; bboxAx.y1 = 1/2+by1/2
+            if i==0:
+                bboxAx.x0+=leftshift;bboxAx.x1=bboxAx.x0+bAxWidth
             if i>0:
-                wid=bboxAx.width
-                bboxAx.x0=xright+wspace*bboxAx.width
-                bboxAx.x1=bboxAx.x0+wid
+                
+                bboxAx.x0=xright+wspace*bAxWidth
+                bboxAx.x1=bboxAx.x0+bAxWidth
             xright=bboxAx.x1
             ax[i].set_position(bboxAx)
         bboxCbar = cbar.ax.get_position()
@@ -23,7 +29,12 @@ def equalPixel(fig,ax,cbar,wspace=0.2,cbarspace=0.05):
         cbar.ax.set_position(bboxCbar)
     else:
         bboxAx=ax.get_position()
-        by1=bboxAx.width*fig.get_figwidth()*ax.get_data_ratio()/fig.get_figheight()
+        if ax!=fig.axes[0]:
+            bAxWidth = fig.axes[0].get_position().width
+        else: 
+            bAxWidth = bboxAx.width
+        bboxAx.x0+=leftshift;bboxAx.x1=bboxAx.x0+bAxWidth
+        by1=bAxWidth*fig.get_figwidth()*ax.get_data_ratio()/fig.get_figheight()
         bboxAx.y0 = 1/2-by1/2; bboxAx.y1 = 1/2+by1/2
         ax.set_position(bboxAx)
         bboxCbar = cbar.ax.get_position()
